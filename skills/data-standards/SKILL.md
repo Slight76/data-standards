@@ -1,5 +1,6 @@
 ---
 name: data-standards
+license: MIT
 description: Team data standards for PostgreSQL with .NET and EF Core. Use when designing or reviewing a database schema, naming tables, columns, indexes, or constraints, choosing column types (timestamptz, text, numeric, uuid vs identity), writing or reviewing EF Core entity configurations and migrations, planning expand/contract schema changes, writing LINQ or SQL queries, fixing N+1, pagination, SELECT *, or missing-index problems, handling transactions, concurrency tokens, and isolation levels, adding a cache or Redis and defining invalidation, or setting up, verifying, and drilling pg_dump/pg_restore backups and Fly Postgres recovery. Provides rule IDs (DB, DATA, MIG, DR, CACHE, NAME, PGX) to cite in PRs and implementation evidence.
 ---
 # Data standards

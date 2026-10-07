@@ -2,6 +2,11 @@
 
 All notable changes to this handbook. Versioning follows SemVer; rule IDs are never renamed or reused.
 
+## 1.0.1 - 2026-10-07
+
+- Declare `license: MIT` in the skill frontmatter so `gh skill publish` validates cleanly.
+- Pin the shared docs-lint workflow to a marketplace commit SHA.
+
 ## 1.0.0 - 2026-10-07
 
 First release of `data-standards`, split out of `Slight76/architecture-standards` (v0.3.0, commit `c1bda3d`) as decided in [ADR-0001](adr/0001-adopt-data-standards.md).
