@@ -1,0 +1,259 @@
+{
+  "version": "1.0.0",
+  "status": "recommended-draft",
+  "repository": "Slight76/data-standards",
+  "rules": [
+    {
+      "id": "DB-001",
+      "domain": "database",
+      "statement": "Every persistent store and schema MUST have a named owning application/module and data steward.",
+      "verification": "Ownership register review",
+      "adr": "ADR-0005",
+      "document": "docs/database-architecture.md",
+      "status": "Proposed",
+      "applies_when": "the solution includes this domain; assess the linked architecture scope"
+    },
+    {
+      "id": "DB-002",
+      "domain": "database",
+      "statement": "Schema changes MUST use committed migrations with expand/contract compatibility across supported releases.",
+      "verification": "Migration rehearsal and mixed-version integration tests",
+      "adr": "ADR-0005",
+      "document": "docs/database-architecture.md",
+      "status": "Proposed",
+      "applies_when": "the solution includes this domain; assess the linked architecture scope"
+    },
+    {
+      "id": "DB-003",
+      "domain": "database",
+      "statement": "Relational integrity MUST use constraints where applicable; indexes MUST be justified by measured access patterns.",
+      "verification": "Constraint tests and query plan review",
+      "adr": "ADR-0005",
+      "document": "docs/database-architecture.md",
+      "status": "Proposed",
+      "applies_when": "the solution includes this domain; assess the linked architecture scope"
+    },
+    {
+      "id": "DB-004",
+      "domain": "database",
+      "statement": "Runtime database identities MUST have least privilege and MUST NOT perform production schema administration.",
+      "verification": "Grant inspection",
+      "adr": "ADR-0005",
+      "document": "docs/database-architecture.md",
+      "status": "Proposed",
+      "applies_when": "the solution includes this domain; assess the linked architecture scope"
+    },
+    {
+      "id": "DB-005",
+      "domain": "database",
+      "statement": "Production stores MUST define RPO/RTO, retention, backup encryption, and restore-test evidence.",
+      "verification": "Recovery exercise review",
+      "adr": "ADR-0005",
+      "document": "docs/database-architecture.md",
+      "status": "Proposed",
+      "applies_when": "the solution includes this domain; assess the linked architecture scope"
+    },
+    {
+      "id": "DATA-001",
+      "domain": "backend",
+      "statement": "Persistence MUST parameterize queries, bound results, and preserve module-owned access.",
+      "verification": "Injection, query-count, and maximum-result integration tests",
+      "adr": "ADR-0018",
+      "document": "docs/persistence-standard.md",
+      "status": "Proposed",
+      "applies_when": "a backend accesses relational data"
+    },
+    {
+      "id": "DATA-002",
+      "domain": "backend",
+      "statement": "Multi-write business operations MUST have tested atomicity and concurrency behavior.",
+      "verification": "Rollback and competing-write tests on the actual engine",
+      "adr": "ADR-0018",
+      "document": "docs/persistence-standard.md",
+      "status": "Proposed",
+      "applies_when": "a backend accesses relational data"
+    },
+    {
+      "id": "DATA-003",
+      "domain": "backend",
+      "statement": "Critical queries MUST have measured plans, indexes, and connection/timeout budgets.",
+      "verification": "Representative query/load report without sensitive data",
+      "adr": "ADR-0018",
+      "document": "docs/persistence-standard.md",
+      "status": "Proposed",
+      "applies_when": "a backend accesses relational data"
+    },
+    {
+      "id": "DB-006",
+      "domain": "database",
+      "statement": "Each store MUST document source-of-truth ownership, classification, lifecycle, and logical/physical design.",
+      "verification": "ER model, ownership and retention review",
+      "adr": "ADR-0019",
+      "document": "docs/design-standard.md",
+      "status": "Proposed",
+      "applies_when": "a solution persists structured business data"
+    },
+    {
+      "id": "DB-007",
+      "domain": "database",
+      "statement": "Relational models MUST use deliberate naming/types, integrity constraints, and tenant-consistent keys.",
+      "verification": "Constraint, precision, deletion, and tenant-link tests",
+      "adr": "ADR-0019",
+      "document": "docs/design-standard.md",
+      "status": "Proposed",
+      "applies_when": "a solution persists structured business data"
+    },
+    {
+      "id": "DB-008",
+      "domain": "database",
+      "statement": "Derived stores MUST document consistency, invalidation, and rebuild paths.",
+      "verification": "Source loss/cache flush/rebuild exercise",
+      "adr": "ADR-0019",
+      "document": "docs/design-standard.md",
+      "status": "Proposed",
+      "applies_when": "a solution persists structured business data"
+    },
+    {
+      "id": "MIG-001",
+      "domain": "database",
+      "statement": "Production migrations MUST be reviewed, rehearsed, serialized, and executed by a separate deployment identity.",
+      "verification": "Fresh and upgrade migration runs plus grant checks",
+      "adr": "ADR-0019",
+      "document": "docs/migration-recovery-standard.md",
+      "status": "Proposed",
+      "applies_when": "a solution changes or operates a production database"
+    },
+    {
+      "id": "MIG-002",
+      "domain": "database",
+      "statement": "Destructive schema changes MUST preserve the supported compatibility window and define data-safe recovery.",
+      "verification": "Mixed-version and interrupted-backfill tests",
+      "adr": "ADR-0019",
+      "document": "docs/migration-recovery-standard.md",
+      "status": "Proposed",
+      "applies_when": "a solution changes or operates a production database"
+    },
+    {
+      "id": "DR-001",
+      "domain": "database",
+      "statement": "Production stores MUST demonstrate restoration against approved RPO/RTO using measured evidence.",
+      "verification": "Isolated restore report including keys, roles, and application validation",
+      "adr": "ADR-0019",
+      "document": "docs/migration-recovery-standard.md",
+      "status": "Proposed",
+      "applies_when": "a solution changes or operates a production database"
+    },
+    {
+      "id": "CACHE-001",
+      "domain": "backend",
+      "statement": "Caches MUST define ownership, scoped keys, staleness, invalidation, and loss behavior.",
+      "verification": "Cross-tenant key, stale-fill race, eviction, and outage tests",
+      "adr": "ADR-0016",
+      "document": "docs/caching-standard.md",
+      "status": "Proposed",
+      "applies_when": "a solution caches business or identity-related data"
+    },
+    {
+      "id": "CACHE-002",
+      "domain": "backend",
+      "statement": "Correctness-critical state MUST NOT rely on best-effort cache durability.",
+      "verification": "Architecture review and restart/failover tests",
+      "adr": "ADR-0016",
+      "document": "docs/caching-standard.md",
+      "status": "Proposed",
+      "applies_when": "a solution caches business or identity-related data"
+    },
+    {
+      "id": "NAME-001",
+      "domain": "database",
+      "statement": "Database identifiers MUST be lower snake_case ASCII without quoting; tables MUST be plural nouns and columns MUST follow the documented patterns.",
+      "verification": "Migration SQL review against this document",
+      "adr": "ADR-0001",
+      "document": "docs/naming-conventions.md",
+      "status": "Proposed",
+      "applies_when": "a solution creates or changes PostgreSQL schemas, tables, columns, indexes, or constraints"
+    },
+    {
+      "id": "NAME-002",
+      "domain": "database",
+      "statement": "Every table MUST have an `id` primary key, `created_at`, and `updated_at` as `timestamptz`; date-only values MUST use `date`.",
+      "verification": "Schema inspection and entity configuration review",
+      "adr": "ADR-0001",
+      "document": "docs/naming-conventions.md",
+      "status": "Proposed",
+      "applies_when": "a solution creates or changes PostgreSQL schemas, tables, columns, indexes, or constraints"
+    },
+    {
+      "id": "NAME-003",
+      "domain": "database",
+      "statement": "Every constraint and index MUST have an explicit name following the `pk_`/`fk_`/`uq_`/`ck_`/`ix_` patterns.",
+      "verification": "Generated migration diff shows no engine-generated names",
+      "adr": "ADR-0001",
+      "document": "docs/naming-conventions.md",
+      "status": "Proposed",
+      "applies_when": "a solution creates or changes PostgreSQL schemas, tables, columns, indexes, or constraints"
+    },
+    {
+      "id": "NAME-004",
+      "domain": "database",
+      "statement": "Each module MUST own a named schema and its own migration history table; application tables MUST NOT live in `public`.",
+      "verification": "Schema listing and `DbContext` configuration review",
+      "adr": "ADR-0001",
+      "document": "docs/naming-conventions.md",
+      "status": "Proposed",
+      "applies_when": "a solution creates or changes PostgreSQL schemas, tables, columns, indexes, or constraints"
+    },
+    {
+      "id": "PGX-001",
+      "domain": "database",
+      "statement": "Every foreign-key column MUST have a supporting index, or a recorded review note explaining why the access pattern never needs it.",
+      "verification": "Schema query listing FK columns without an index returns only documented cases",
+      "adr": "ADR-0001",
+      "document": "docs/postgres-anti-patterns.md",
+      "status": "Proposed",
+      "applies_when": "a solution designs tables, writes queries, or reviews EF Core output against PostgreSQL"
+    },
+    {
+      "id": "PGX-002",
+      "domain": "database",
+      "statement": "List endpoints and background readers MUST use keyset pagination and bounded page sizes; `OFFSET` pagination MUST NOT be used beyond the first few pages.",
+      "verification": "Query review and integration test with a page cursor",
+      "adr": "ADR-0001",
+      "document": "docs/postgres-anti-patterns.md",
+      "status": "Proposed",
+      "applies_when": "a solution designs tables, writes queries, or reviews EF Core output against PostgreSQL"
+    },
+    {
+      "id": "PGX-003",
+      "domain": "database",
+      "statement": "Migrations MUST NOT take long `ACCESS EXCLUSIVE` locks on tables with production traffic; indexes MUST be created concurrently and constraints validated separately.",
+      "verification": "Migration SQL review and lock-timeout setting in the deployment step",
+      "adr": "ADR-0001",
+      "document": "docs/postgres-anti-patterns.md",
+      "status": "Proposed",
+      "applies_when": "a solution designs tables, writes queries, or reviews EF Core output against PostgreSQL"
+    }
+  ],
+  "externalDecisions": {
+    "ADR-0005": {
+      "repository": "Slight76/architecture-standards",
+      "status": "Accepted",
+      "url": "https://github.com/Slight76/architecture-standards/blob/main/adr/0005-database.md"
+    },
+    "ADR-0016": {
+      "repository": "Slight76/architecture-standards",
+      "status": "Proposed",
+      "url": "https://github.com/Slight76/architecture-standards/blob/main/adr/0016-implementation-decisions.md"
+    },
+    "ADR-0018": {
+      "repository": "Slight76/architecture-standards",
+      "status": "Proposed",
+      "url": "https://github.com/Slight76/architecture-standards/blob/main/adr/0018-implementation-decisions.md"
+    },
+    "ADR-0019": {
+      "repository": "Slight76/architecture-standards",
+      "status": "Proposed",
+      "url": "https://github.com/Slight76/architecture-standards/blob/main/adr/0019-implementation-decisions.md"
+    }
+  }
+}

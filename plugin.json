@@ -1,0 +1,11 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "data-standards",
+  "version": "1.0.0",
+  "description": "Team data standards for developers and AI agents: database design, naming, Postgres, migrations, persistence, caching, backup and restore",
+  "author": { "name": "Slight76", "url": "https://github.com/Slight76" },
+  "homepage": "https://github.com/Slight76/data-standards",
+  "repository": "https://github.com/Slight76/data-standards",
+  "license": "MIT",
+  "keywords": ["standards", "agent-skills", "data"]
+}
